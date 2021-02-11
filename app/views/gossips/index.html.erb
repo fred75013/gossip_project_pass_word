@@ -1,0 +1,36 @@
+
+<div class="welcome">
+  <div class='text-center'>
+    <h1 class='mt-3 '>Bienvenue <%= @first_name %> sur Gossip Project</h1><br>
+    <a type="button" href="/gossips/new" class="btn btn-primary btn-lg">Créer ton Gossip</a>
+    <p class="mt-4">la liste de nos p'tits gossips</p>
+  </div>
+
+  <div class="row m-3">
+    <% @gossips.all.each do |gossip|%>
+    <br>
+      <div class="col-sm-4 mt-3">
+        <div class="card">
+          <div class="card-body text-center mx-auto">
+            <h5 class="card-title"> Titre : <%=gossip.title%> </h5>
+            <p class="card-text">Créer par : <%= gossip.user.first_name %> </p>
+            <p><%=gossip.comments.count%></p>
+            <a href= "/gossips/<%=gossip.id%>/" class="btn btn-outline-primary btn-sm">Voir le gossip</a>
+
+            <%if current_user%>
+            <% pre_like = gossip.likes.find { |like| like.user_id == current_user.id} %>
+              <% if pre_like %>
+            <%= button_to 'Unlike', gossip_like_path(gossip, pre_like), method: :delete %>
+              <% else %>
+            <%= button_to 'Like', gossip_likes_path(gossip), method: :post %>
+              <% end %>
+            <p><%= gossip.likes.count %> <%= (gossip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+            <%end%>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

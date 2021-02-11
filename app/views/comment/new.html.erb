@@ -1,0 +1,12 @@
+<h3>Poste ton commentaire</h3>
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+  <div class="form-group">
+        <%= label_tag 'Content'%>
+        <%= text_area_tag 'content', nil, rows: 6, placeholder: 'Ecrit ton commentaire...', class: 'form-control'%>
+  </div>
+  <br>
+
+  <%= submit_tag "Create Comment", class: 'btn btn-primary' %>
+
+<% end %>

@@ -1,0 +1,55 @@
+.jumbotron {
+  height: 550px;
+  background-image: url("chut.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.decouvrir {
+  position: absolute;
+  left: 0px;
+}
+
+.user_profil {
+  display: flex;
+  margin: 50px;
+}
+
+.city_page {
+  display: flex;
+}
+
+.gossip_ville {
+  height: 340px;
+  overflow: auto;
+}
+
+.nav_home {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.sign_in {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background-image: url("gossip.jpg");
+  background-repeat: repeat;
+  height: 100%;
+  color: white;
+  font-size: 1.6rem;
+}
+
+.connexion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background-image: url("gossip.jpg");
+  background-size: cover;
+  height: 500px;
+  color: white;
+  font-size: 1.6rem;
+}

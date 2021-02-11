@@ -1,0 +1,39 @@
+<div class="text-center mt-5 fs-3">
+  <h1>GOSSIP N°<%= params[:id]%></h1>
+
+
+
+
+  <% pre_like = @gossips.likes.find { |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+  <%= button_to 'Unlike', gossip_like_path(@gossips, pre_like), method: :delete %>
+    <% else %>
+  <%= button_to 'Like', gossip_likes_path(@gossips), method: :post %>
+    <% end %>
+  <p><%= @gossips.likes.count %> <%= (@gossips.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+
+  <p>Titre du Gossip : <span class="text-secondary fs-4"><%=@gossips.title%></span></p>
+  <p>Contenu : <span class="text-secondary fs-4">"<%=@gossips.content%>"</span></p>
+  <p>Créer par : <span class="text-secondary fs-4"><%=@gossips.user.first_name%> <%=@gossips.user.last_name%></span></p>
+  <p>Créer le : <span class="text-secondary fs-4"><%=@gossips.created_at%></span></p>
+
+  <p><a href="/cities/<%=@gossips.user.city.id%>" class="btn btn-outline-primary">voir la fiche de la ville</a> <a href="/users/<%=@gossips.user.id%>" class="btn btn-outline-primary">voir la fiche de l'auteur</a> <a href="/welcome" class="btn btn-outline-primary">Retour à l'accueil</a></p>
+  <% if current_user == @gossips.user %>
+  <a href="/gossips/<%=@gossips.id%>/edit" class="btn btn-outline-primary">Edit le potin</a> 
+  <a href="/gossips/<%=@gossips.id%>" class="btn" data-confirm="êtes-vous sur?" data-method="DELETE">Supprimer la potin</a>
+  <a href="/gossips/<%=@gossips.id%>/comment/new" class="btn btn-outline-warning"> commentaire </a>
+  <%end%>
+</div>
+
+
+<%Comment.all.each do |i|%>
+  <%if i.gossip.id == @gossips.id%>
+    <%=i.content%> 
+     <% if current_user == @gossips.user %>
+    <a href="/gossips/<%=@gossips.id%>/comment/<%=i.id%>" class="btn btn-outline-danger" data-confirm="êtes-vous sur?" data-method="DELETE"> supprimer </a> 
+    <a href="/gossips/<%=@gossips.id%>/comment/<%=i.id %>/edit/" class="btn btn-outline-warning"> editer </a></br>
+    <%end%>
+  <%end%>
+<%end%>
+

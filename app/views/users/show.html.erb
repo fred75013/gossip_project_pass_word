@@ -1,0 +1,18 @@
+
+<div class="user_profil">
+
+  <div>
+    <img src="https://picsum.photos/id/1011/610/320" alt="img" style="border-radius:5px;">
+  </div>
+
+  <div class="ml-3 mt-3 fs-3">
+    <p>Nom : <span class="text-secondary fs-4"><%=@users.first_name%> <%=@users.last_name%></span> </p> 
+    <p>Age : <span class="text-secondary fs-4"><%=@users.age%> ans</span></p>
+    <p>Email : <span class="text-secondary fs-4"><%=@users.email%></span></p>
+    <p>Ville : <a href="/cities/<%=@users.city.id%>"><span class="text-secondary fs-4 "><%=@users.city.name%></span></p></a>
+    <p>Description : <span class="text-secondary fs-4 font-italic">"<%=@users.description%>"</span></p>
+  </div> 
+</div>
+<div class="text-center mt-1"><p><a href="/cities/<%=@users.city.id%>" class="btn btn-primary">voir la Ville</a> <a href="/welcome" class="btn btn-outline-secondary">Retour à l'accueil</a></p></div>
+
+
